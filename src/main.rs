@@ -1,4 +1,4 @@
-use rand:: {thread_rng, seq::SliceRandom};
+use rand:: {rng, seq::SliceRandom};
 
 
 #[derive(Debug)]
@@ -31,17 +31,27 @@ impl Deck{ //implimenting deck
         //implicit function
 
     }
-    fn shuffl(&mut self){
-        let mut random = thread_rng();
+    
+    fn shuffle(&mut self){
+        let mut random = rng();
         self.cards.shuffle(&mut random);
+    }
+
+    fn deal(&mut self, num_cards:usize) -> Vec<String>{
+
+            self.cards.split_off(self.cards.len()-num_cards) 
+            //what splitoff does is it takes devides the items by the number we devide and 
+            //gives us the last items.
     }
 }
 
 fn main() {
 
     let mut deck = Deck::new(); //or Vec::new()
+    deck.shuffle();
 
-    deck.shuffl();
+    //probably need to handle error handling
+    let cards = deck.deal(3);
 
-    println!("here is your deck {deck:#?}");
+    println!("here is your deck {cards:#?}");
 }
