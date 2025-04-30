@@ -22,10 +22,6 @@ impl Deck{ //implimenting deck
             }
 
         }
-
-
-
-         
         
         Deck{cards} //or Vec::new() 
         //implicit function
