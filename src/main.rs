@@ -3,25 +3,34 @@ struct Deck{
     cards : Vec<String>,
 }
 
+impl Deck{ //implimenting deck
+    fn new() -> Self {
+            //vec![] for vectors and []for arrays
+        //vec! allows things to grow or shrink in size
+        let suits = ["💖","🍀","💎","🌿"];
+        let values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
+
+        let mut cards = vec![];
+
+        for suite in suits{
+            for value in values{
+                let card = format!("{value} of {suite}");
+                cards.push(card);
+            }
+        }
+
+
+
+        let deck = Deck{cards}; //or Vec::new()
+        
+        return deck;
+
+    }
+}
+
 fn main() {
 
-    //vec![] for vectors and []for arrays
-    //vec! allows things to grow or shrink in size
-    let suits = ["💖","🍀","💎","🌿"];
-    let values = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
-
-    let mut cards = vec![];
-
-    for suite in suits{
-        for value in values{
-            let card = format!("{value} of {suite}");
-            cards.push(card);
-        }
-    }
-
-
-
-    let deck = Deck{cards}; //or Vec::new()
+    let deck = Deck::new(); //or Vec::new()
 
     println!("here is your deck {deck:#?}");
 }
