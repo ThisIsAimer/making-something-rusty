@@ -5,18 +5,35 @@ struct Account{
     holder : String
 }
 
-#[derive(Debug)]
-struct Bank{
-    account: Vec<Account>
+impl Account{
+    fn new(id:i32, holder:String) -> Self{
+        Account { id, balance: 0, holder }
+    }
 }
 
-impl Account{
+#[derive(Debug)]
+struct Bank{
+    accounts: Vec<Account>
+}
+
+impl Bank{
     fn new() -> Self{
-        
+        Bank { accounts: vec![] }
     }
+}
+
+fn print_account(account:Account){
+    println!("{:#?}",account);
 }
 
 
 fn main() {
-    println!("Hello, world!");
+    let new_bank = Bank::new();
+    let mut account1 = Account::new(1, "ABCD".to_string());
+                                                        // we can also use String::from("ABCD")
+
+    account1.balance=400;
+
+    println!("{:#?}",new_bank);
+    print_account(account1);
 }
