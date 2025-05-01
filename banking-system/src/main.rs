@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug,Clone)]
 struct Account{
     id : i32,
     balance : i32,
@@ -28,12 +28,14 @@ fn print_account(account:Account){
 
 
 fn main() {
-    let new_bank = Bank::new();
+    let mut new_bank = Bank::new();
     let mut account1 = Account::new(1, "ABCD".to_string());
                                                         // we can also use String::from("ABCD")
-
     account1.balance=400;
 
+    new_bank.accounts.push(account1);
+
     println!("{:#?}",new_bank);
-    print_account(account1);
+    print_account(new_bank.accounts[0].clone());
+    
 }
