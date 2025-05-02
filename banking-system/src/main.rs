@@ -27,16 +27,19 @@ fn print_account(account:&Account){
 }
 
 
+
 fn main() {
     let mut bank = Bank::new();
     let mut account = Account::new(1, "ABCD".to_string());
                                                         // we can also use String::from("ABCD")
     account.balance=400;
-    let account_ref = &account;
-
     bank.accounts.push(account.clone());
 
-    print_account(&account_ref);
+    let account_ref = &mut account; //changing the data through borrowing
+    account_ref.balance=7000;
+
+
+    print_account(&account);
     println!("{:#?}", bank);
     println!("{:#?}", account);
     
