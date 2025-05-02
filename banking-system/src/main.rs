@@ -1,4 +1,4 @@
-#[derive(Debug,Clone)]
+#[derive(Debug)]
 struct Account{
     id : i32,
     balance : i32,
@@ -22,20 +22,19 @@ impl Bank{
     }
 }
 
-fn print_account(account:Account){
+fn print_account(account:&Account){
     println!("{:#?}",account);
 }
 
 
 fn main() {
-    let mut new_bank = Bank::new();
-    let mut account1 = Account::new(1, "ABCD".to_string());
+    //let mut new_bank = Bank::new();
+    let mut account = Account::new(1, "ABCD".to_string());
                                                         // we can also use String::from("ABCD")
-    account1.balance=400;
+    account.balance=400;
+    let account_ref = &account;
 
-    new_bank.accounts.push(account1);
-
-    println!("{:#?}",new_bank);
-    print_account(new_bank.accounts[0].clone());
+    print_account(&account_ref);
+    print!("{:#?}", account);
     
 }
