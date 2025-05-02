@@ -36,7 +36,8 @@ fn main() {
     bank.accounts.push(account.clone());
 
     let account_ref = &mut account; //changing the data through borrowing
-    account_ref.balance=7000;
+    account_ref.id=7000;
+    account_ref.holder="cat".to_string();
 
 
     print_account(&account);
