@@ -48,6 +48,9 @@ impl Bank{
     }
 }
 
+fn new_balance(account:&mut Account, amount:i32 ){
+    account.balance=amount;
+}
 
 
 
@@ -55,7 +58,7 @@ fn main() {
     let mut bank = Bank::new();
     let mut account = Account::new(1, "ABCD".to_string());
                                                         // we can also use String::from("ABCD")
-    account.deposit(1000);
+    new_balance(&mut account, 1000);
     account.id=7000;
     account.holder="cat".to_string();
 
