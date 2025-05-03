@@ -52,6 +52,18 @@ impl Catalog{
     fn add(&mut self, item: Media) {
         self.items.push(item);
     }
+    
+    fn get_item(&self,index:usize) -> Exist{
+        if self.items.len() > index{
+            Exist::Exists(&self.items[index])
+        }else{
+            Exist::DoesntExist
+        }
+    }
+}
+enum Exist<'a>{
+    Exists(&'a Media),
+    DoesntExist
 }
 
 
@@ -85,16 +97,24 @@ fn main() {
 
     println!("{}\n{}",catalog.items[2].description(),catalog.items[1].description());
 
-    println!("{:#?}", catalog);
+    println!("{:#?}", catalog.items[1]);
     
-    //the option enum with .get()
-    match catalog.items.get(1){
-        //Option::Some()
-        Some(value) => {
-            println!("item: {:#?}",value)
+    // //the option enum with .get()
+    // match catalog.items.get(1){
+    //     //Option::Some()
+    //     Some(value) => {
+    //         println!("item: {:#?}",value)
+    //     }
+    //     None => {
+    //         println!("nothing there!")
+    //     }
+    // }
+    match catalog.get_item(0){
+        Exist::Exists(item)=>{
+            println!("{:#?}",item);
         }
-        None => {
-            println!("nothing there!")
+        Exist::DoesntExist => {
+            print!("nothing is there");
         }
     }
 }
