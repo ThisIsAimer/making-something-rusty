@@ -1,10 +1,10 @@
-use std::ptr::null;
-
 #[derive(Debug)]
 enum Media{
-    Book {Title:String, Auther:String},
-    Movie {Title:String, Director:String},
-    AudioBook {Title:String}
+    Book {title:String, auther:String},
+    Movie {title:String, director:String},
+    AudioBook {title:String},
+    Podcast(u16),
+    Placeholder
 }// Book Movie and AudioBook will be of type Media
 
 impl Media{
@@ -21,14 +21,20 @@ impl Media{
     // }
 
         match self{
-            Media::Book { Title, Auther } => {
-                format!("book is {} by {}",Title,Auther)
+            Media::Book { title, auther } => {
+                format!("book is {} by {}",title,auther)
             }
-            Media::Movie { Title, Director } => {
-                format!("movie is {} by {}",Title,Director)
+            Media::Movie { title, director } => {
+                format!("movie is {} by {}",title,director)
             }
-            Media::AudioBook { Title } => {
-                format!("Audiobook is {}",Title)
+            Media::AudioBook { title } => {
+                format!("Audiobook is {}",title)
+            }
+            Media::Podcast(ep_no) => {
+                format!("ep no.{}",ep_no)
+            }
+            Media::Placeholder => {
+                format!("N/A")
             }
         }
     }
@@ -36,15 +42,15 @@ impl Media{
 
 #[derive(Debug)]
 struct Catalog{
-    Items : Vec<Media>
+    items : Vec<Media>
 }
 
 impl Catalog{
     fn new() -> Self{
-        Catalog {Items : vec![]}
+        Catalog {items : vec![]}
     }
     fn add(&mut self, item: Media) {
-        self.Items.push(item);
+        self.items.push(item);
     }
 }
 
@@ -53,24 +59,32 @@ fn main() {
     let mut catalog = Catalog::new();
 
     let audiobook = Media::AudioBook { 
-        Title: ("Minecraft stories".to_string())
+        title: ("Minecraft stories".to_string())
     };
     let movie = Media::Movie {
-        Title: ("good movie".to_string()),
-        Director: ("Good director".to_string()) 
+        title: ("good movie".to_string()),
+        director: ("Good director".to_string()) 
         };
 
     let book = Media::Book {
-        Title: "good book".to_string(),
-        Auther: "good auther".to_string() 
+        title: "good book".to_string(),
+        auther: "good auther".to_string() 
         };
+
+
+    let podcast = Media::Podcast(30);
+    let placeholder = Media::Placeholder;
+
 
     catalog.add(audiobook);
     catalog.add(book);
     catalog.add(movie);
+    catalog.add(podcast);
+    catalog.add(placeholder);
 
 
-    println!("{}\n{}",catalog.Items[2].description(),catalog.Items[1].description());
+    println!("{}\n{}",catalog.items[2].description(),catalog.items[1].description());
 
-    println!("{:#?}", catalog)
+    println!("{:#?}", catalog);
+    println!("{:#?}", catalog.items.get(1));
 }
