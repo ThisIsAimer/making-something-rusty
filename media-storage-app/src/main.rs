@@ -86,5 +86,15 @@ fn main() {
     println!("{}\n{}",catalog.items[2].description(),catalog.items[1].description());
 
     println!("{:#?}", catalog);
-    println!("{:#?}", catalog.items.get(1));
+    
+    //the option enum with .get()
+    match catalog.items.get(1){
+        //Option::Some()
+        Some(value) => {
+            println!("item: {:#?}",value)
+        }
+        None => {
+            println!("nothing there!")
+        }
+    }
 }
