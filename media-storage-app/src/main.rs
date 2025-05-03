@@ -9,14 +9,27 @@ enum Media{
 
 impl Media{
     fn description(&self) -> String{
-        if let Media::Book { Title, Auther } = self{
-            format!("book is {} by {}",Title,Auther)
-        }else if let Media::Movie {Title,Director} = self {
-            format!("movie is {} by {}",Title,Director)
-        } else if let Media::AudioBook { Title } = self {
-            format!("Audiobook is {}",Title)  
-        } else{
-            "error".to_string()
+    //     if let Media::Book { Title, Auther } = self{
+    //         format!("book is {} by {}",Title,Auther)
+    //     }else if let Media::Movie {Title,Director} = self {
+    //         format!("movie is {} by {}",Title,Director)
+    //     } else if let Media::AudioBook { Title } = self {
+    //         format!("Audiobook is {}",Title)  
+    //     } else{
+    //         "error".to_string()
+    //     }
+    // }
+
+        match self{
+            Media::Book { Title, Auther } => {
+                format!("book is {} by {}",Title,Auther)
+            }
+            Media::Movie { Title, Director } => {
+                format!("movie is {} by {}",Title,Director)
+            }
+            Media::AudioBook { Title } => {
+                format!("Audiobook is {}",Title)
+            }
         }
     }
 }
@@ -39,7 +52,7 @@ fn main() {
         Auther: "good auther".to_string() 
         };
 
-    println!("{}\n {}",movie.description(),book.description());
+    println!("{}\n{}",movie.description(),book.description());
 
     print_media(audiobook);
 }
