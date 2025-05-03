@@ -34,11 +34,24 @@ impl Media{
     }
 }
 
-fn print_media(media:Media){
-    println!("{:#?}",media);
+#[derive(Debug)]
+struct Catalog{
+    Items : Vec<Media>
 }
 
+impl Catalog{
+    fn new() -> Self{
+        Catalog {Items : vec![]}
+    }
+    fn add(&mut self, item: Media) {
+        self.Items.push(item);
+    }
+}
+
+
 fn main() {
+    let mut catalog = Catalog::new();
+
     let audiobook = Media::AudioBook { 
         Title: ("Minecraft stories".to_string())
     };
@@ -52,7 +65,12 @@ fn main() {
         Auther: "good auther".to_string() 
         };
 
-    println!("{}\n{}",movie.description(),book.description());
+    catalog.add(audiobook);
+    catalog.add(book);
+    catalog.add(movie);
 
-    print_media(audiobook);
+
+    println!("{}\n{}",catalog.Items[2].description(),catalog.Items[1].description());
+
+    println!("{:#?}", catalog)
 }
