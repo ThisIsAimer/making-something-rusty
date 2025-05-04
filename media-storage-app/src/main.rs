@@ -52,18 +52,14 @@ impl Catalog{
     fn add(&mut self, item: Media) {
         self.items.push(item);
     }
-    
-    fn get_item(&self,index:usize) -> Exist{
+
+    fn get_item(&self,index:usize) -> Option<&Media>{ //Option<&Media>
         if self.items.len() > index{
-            Exist::Exists(&self.items[index])
+            Some(&self.items[index])
         }else{
-            Exist::DoesntExist
+            None
         }
     }
-}
-enum Exist<'a>{
-    Exists(&'a Media),
-    DoesntExist
 }
 
 
@@ -99,22 +95,11 @@ fn main() {
 
     println!("{:#?}", catalog.items[1]);
     
-    // //the option enum with .get()
-    // match catalog.items.get(1){
-    //     //Option::Some()
-    //     Some(value) => {
-    //         println!("item: {:#?}",value)
-    //     }
-    //     None => {
-    //         println!("nothing there!")
-    //     }
-    // }
-    match catalog.get_item(0){
-        Exist::Exists(item)=>{
-            println!("{:#?}",item);
-        }
-        Exist::DoesntExist => {
-            print!("nothing is there");
-        }
-    }
+    let item = catalog.get_item(1);
+    let item1 = catalog.get_item(40);
+    let placeholder = Media::Placeholder;
+    println!("{:#?}",item.unwrap());//expecting there is a value here, if None the program panics
+    println!("{:#?}",item1.unwrap_or(&placeholder));/*same as unwrap, if None gives another 
+                                                    provided reference to a balue from Media*/
+    println!("{:#?}",item1.expect("no value"));//like unwrap but sends the string if there is no value and crash
 }
