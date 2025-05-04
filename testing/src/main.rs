@@ -4,6 +4,7 @@ struct Account {
     balance: i32
 }
 
+
 fn first_muts(accounts: &mut Vec<Account>) -> Option<&mut Account>{
     if accounts.len()>1{
         Some(&mut accounts[0])
@@ -23,7 +24,7 @@ fn main() {
 
         Some(value) => {
             value.balance = 30;
-            println!("{:#?}",accounts);
+            println!("{:#?}",value);
         }
 
         None => {
