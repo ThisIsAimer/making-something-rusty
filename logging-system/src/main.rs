@@ -6,13 +6,34 @@ fn main() {
 
     match devide(3.0, 0.0){
         Ok(value) => {
-            print!("{}",value)
+            println!("the value is: {}",value)
         }
         Err(value) =>{
-            print!("{value}")
+            println!("{value}")
         }
     }
     
+    match validate_email("abca@abcd.com".to_string()) {
+
+        Ok(()) => { //or ..
+            println!("mail is valid")
+        }
+
+        Err(value) => {
+            println!("{}",value)
+        }
+        
+    }
+
+}
+
+fn validate_email(email:String) -> Result<(), Error>{
+    if email.contains("@"){
+        Ok(()) //() is an empty touple
+    }
+    else{
+        Err(Error::other("email must contain a @"))
+    }
 }
 
 fn devide(a:f64,b:f64)-> Result<f64,Error>{
