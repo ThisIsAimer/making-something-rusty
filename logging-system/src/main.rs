@@ -1,13 +1,29 @@
-use std::{fs, io::Error};// import io::Error for Error::other
+use std::fs; // import io::Error for Error::other
+
+fn extract_errors(text: &str) -> Vec<&str> {
+    let split_text = text.split("\n");
+
+    let mut results = vec![];
+
+    for lines in split_text {
+        if lines.starts_with("ERROR") {
+            results.push(lines);
+        }
+    }
+
+    results
+}
 
 fn main() {
     match fs::read_to_string("logs.txt") {
-
-        Ok(text)=> {println!("text that was read:-\n{}",text)}
-        Err(error) =>{println!("error found: {}", error)}
+        Ok(text) => {
+            let error_lines = extract_errors(&text);
+            println!("{:#?}", error_lines);
+        }
+        Err(error) => {
+            println!("error found: {}", error)
+        }
     }
-
-    
 
     // match devide(3.0, 0.0){
     //     Ok(value) => {
@@ -17,7 +33,7 @@ fn main() {
     //         println!("{value}")
     //     }
     // }
-    
+
     // match validate_email("abca@abcd.com".to_string()) {
 
     //     Ok(()) => { //or ..
@@ -27,9 +43,8 @@ fn main() {
     //     Err(value) => {
     //         println!("{}",value)
     //     }
-        
-    // }
 
+    // }
 }
 
 // fn validate_email(email:String) -> Result<(), Error>{
