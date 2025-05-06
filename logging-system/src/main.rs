@@ -1,13 +1,13 @@
 use std::fs; // import io::Error for Error::other
 
-fn extract_errors(text: &str) -> Vec<&str> {
+fn extract_errors(text: &str) -> Vec<String> {
     let split_text = text.split("\n");
 
     let mut results = vec![];
 
     for lines in split_text {
         if lines.starts_with("ERROR") {
-            results.push(lines);
+            results.push(lines.to_string());
         }
     }
 
@@ -15,15 +15,16 @@ fn extract_errors(text: &str) -> Vec<&str> {
 }
 
 fn main() {
+    let mut error_lines = vec![];
     match fs::read_to_string("logs.txt") {
         Ok(text) => {
-            let error_lines = extract_errors(&text);
-            println!("{:#?}", error_lines);
+            error_lines = extract_errors(&text);
         }
         Err(error) => {
-            println!("error found: {}", error)
+            println!("error found: {}", error);
         }
     }
+    println!("{:#?}", error_lines);
 
     // match devide(3.0, 0.0){
     //     Ok(value) => {
