@@ -1,5 +1,5 @@
 fn print_element(elements: &Vec<String>){
-    elements.iter().for_each(|element| println!("{}",element));
+    elements.iter().map(|ele| format!("{}, {}",ele,ele)).for_each(|element| println!("{}",element));
 }
 
 fn main() {
