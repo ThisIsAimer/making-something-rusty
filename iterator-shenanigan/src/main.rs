@@ -1,3 +1,7 @@
+fn print_element(elements: &Vec<String>){
+    elements.iter().for_each(|element| println!("{}",element));
+}
+
 fn main() {
     let colors = vec![
         "red".to_string(),
@@ -5,13 +9,5 @@ fn main() {
         "green".to_string(),
     ];
 
-    let mut colors_iter = colors.iter();
-
-
-    println!("{:#?}", colors_iter);
-    println!("{:#?}", colors_iter.next());
-    println!("{:#?}", colors_iter.next());
-    println!("{:#?}", colors_iter.next());
-    println!("{:#?}", colors_iter.next());
-
+    print_element(&colors);
 }
