@@ -24,6 +24,11 @@ fn explode(element: &Vec<String>) -> Vec<Vec<String>>{
     element.iter().map(|element| element.chars().map(|char| char.to_string()).collect()).collect()
 }
 
+fn find_word(element : &Vec<String>, search : &str, placeholder: &str) -> String{
+    element.iter().find(|element| element.contains(search)).map_or(placeholder.to_string(),|e| e.to_string())
+    //in map_or default must be the none statement
+}
+
 fn main() {
     let  colors = vec![
         "red".to_string(),
@@ -45,5 +50,7 @@ fn main() {
     let space_objects = move_vec(planets);
     print_element(&space_objects);
     println!("{:#?}", explode(&colors));
+
+    println!("{:#?}",find_word(&colors, "eue", "orange"));
 
 }
