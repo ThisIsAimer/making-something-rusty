@@ -1,3 +1,5 @@
+use std::vec;
+
 fn print_element(elements: &[String]){// we can use vector slice type &[String] to use a portion of a vector
     elements.iter().map(|ele| format!("{}, {}",ele,ele)).for_each(|element| println!("{}",element));
 }
@@ -9,6 +11,13 @@ fn shorten_strings(elements : &mut Vec<String>){
 fn upper_case(element : &Vec<String>) -> Vec<String>{
     //element.iter().map(|element| element.to_uppercase()).collect()
     element.iter().map(|element| element.to_uppercase()).collect()
+    // collect::<Vec<String>>() or <Vec<_>> _ tells rust to figure it out
+}
+
+fn move_vec(element: Vec<String>) -> Vec<String>{
+    let mut new_ele = vec![];
+    element.into_iter().for_each(|element| new_ele.push(element));
+    new_ele
 }
 
 fn main() {
@@ -28,5 +37,8 @@ fn main() {
     shorten_strings(&mut planets);
     print_element(&planets);
     println!("{:#?}",upper_case(&colors));
+
+    let space_objects = move_vec(planets);
+    print_element(&space_objects);
 
 }
