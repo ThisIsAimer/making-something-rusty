@@ -20,6 +20,10 @@ fn move_vec(element: Vec<String>) -> Vec<String>{
     new_ele
 }
 
+fn explode(element: &Vec<String>) -> Vec<Vec<String>>{
+    element.iter().map(|element| element.chars().map(|char| char.to_string()).collect()).collect()
+}
+
 fn main() {
     let  colors = vec![
         "red".to_string(),
@@ -40,5 +44,6 @@ fn main() {
 
     let space_objects = move_vec(planets);
     print_element(&space_objects);
+    println!("{:#?}", explode(&colors));
 
 }
