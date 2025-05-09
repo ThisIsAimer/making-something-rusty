@@ -21,6 +21,16 @@ fn last_element(elements: &[String]) -> & str{
     elements.last().unwrap()
 }
 
+//can be either one
+fn longest_word<'a>(word_a : &'a str, word_b : &'a str)-> &'a str{
+    if word_a >= word_b{
+        word_a
+    }
+    else {
+        word_b
+    }
+}
+
 
 fn main() {
     let lang = vec![
@@ -32,4 +42,5 @@ fn main() {
     let nextlang = next_lang(&lang, "Rust");
     println!("{:#?}",nextlang);
     println!("{:#?}",last_element(&lang));
+    println!("{:#?}",longest_word(&lang[2], &lang[1]));
 }
