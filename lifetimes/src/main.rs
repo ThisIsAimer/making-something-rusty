@@ -16,6 +16,11 @@ fn next_lang<'a>(elements : &'a[String], value: &str)-> &'a str{
     elements.last().unwrap()
 }
 
+//only recieves one reference
+fn last_element(elements: &[String]) -> & str{
+    elements.last().unwrap()
+}
+
 
 fn main() {
     let lang = vec![
@@ -25,5 +30,6 @@ fn main() {
     ];
 
     let nextlang = next_lang(&lang, "Rust");
-    print!("{:#?}",nextlang)
+    println!("{:#?}",nextlang);
+    println!("{:#?}",last_element(&lang));
 }
