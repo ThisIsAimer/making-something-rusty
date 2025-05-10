@@ -4,7 +4,10 @@ fn hypotenuse(a:f64,b:f64) -> f64 {
 
 fn main() {
 
-    let a:= 3.0;
+    let a: f32 = 3.0;
     let b = 4.0;
-    println!("{}", hypotenuse(a, b));
+
+    let a_f64 = a as f64;
+
+    println!("{}", hypotenuse(a_f64, b));
 }
