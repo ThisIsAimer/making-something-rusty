@@ -1,6 +1,6 @@
-use num_traits::{Float,ToPrimitive};
+use num_traits::ToPrimitive;
 
-fn hypotenuse<T:Float,U:Float>(a:T,b:U) -> f64 {
+fn hypotenuse<T:ToPrimitive,U:ToPrimitive>(a:T,b:U) -> f64 {
     let a_f64 = a.to_f64().unwrap();
     let b_f64 = b.to_f64().unwrap();
     (a_f64.powi(2)+b_f64.powi(2)).sqrt()
@@ -8,8 +8,8 @@ fn hypotenuse<T:Float,U:Float>(a:T,b:U) -> f64 {
 
 fn main() {
 
-    let a: f64 = 3.0;
-    let b: f32 = 4.0;
+    let a = 3.0;
+    let b = 4;
 
 
     println!("{}", hypotenuse(a, b));
