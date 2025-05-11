@@ -1,5 +1,6 @@
-#[derive(Debug)]
+use super::container::Container;
 
+#[derive(Debug)]
 //basket can store multiple type of items, but when an item is created with a type, it will only hold that type of item
 pub struct Basket<T>{
     item : Option<T>
@@ -10,15 +11,18 @@ impl<T> Basket<T> {
         Basket { item: Some(item) }
     }
 
-    pub fn get(&mut self) -> Option<T>{
+}
+
+impl<T> Container<T> for Basket<T>{
+    fn get(&mut self) -> Option<T>{
         self.item.take()
     }
 
-    pub fn put(&mut self, item: T){
+    fn put(&mut self, item: T){
         self.item = Some(item)
     }
 
-    pub fn is_empty(&self) -> bool{
+    fn is_empty(&self) -> bool{
         self.item.is_none()
     }
 }
