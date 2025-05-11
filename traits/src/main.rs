@@ -3,7 +3,11 @@ mod stack;
 mod container;
 use basket::Basket;
 use stack::Stack;
-use crate::container::Container;// necessart now
+use container::Container;// necessart now
+
+fn add_string<T:Container<String>>(element: &mut T, string: String){
+    element.put(string);
+}
 
 fn main() {
     let mut  basket = Basket::new(String::from("Water"));
@@ -14,5 +18,8 @@ fn main() {
 
 
     let mut stack = Stack::new(vec!["water".to_string()]);
-    let mut nums = Stack::new(vec![1,2,3]);
+    let  nums = Stack::new(vec![1,2,3]);
+    add_string(&mut stack, String::from("lava"));
+    println!("{:#?}",stack);
+    println!("{:#?}",nums);
 }
