@@ -1,18 +1,20 @@
 #[derive(Debug)]
-pub struct Basket{
-    item : Option<String>
+
+//basket can store multiple type of items, but when an item is created with a type, it will only hold that type of item
+pub struct Basket<T>{
+    item : Option<T>
 }
 
-impl Basket {
-    pub fn new(item :String) -> Self{
+impl<T> Basket<T> {
+    pub fn new(item :T) -> Self{
         Basket { item: Some(item) }
     }
 
-    pub fn get(&mut self) -> Option<String>{
+    pub fn get(&mut self) -> Option<T>{
         self.item.take()
     }
 
-    pub fn put(&mut self, item: String){
+    pub fn put(&mut self, item: T){
         self.item = Some(item)
     }
 
