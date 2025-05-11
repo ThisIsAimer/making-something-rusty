@@ -1,5 +1,8 @@
 mod basket;
+mod stack;
+mod container;
 use basket::Basket;
+use stack::Stack;
 
 fn main() {
     let mut  basket = Basket::new(String::from("Water"));
@@ -7,4 +10,8 @@ fn main() {
     println!("{:#?}",basket.is_empty());
     basket.put("lava".to_string());
     println!("{:#?}",basket.get());
+
+
+    let mut stack = Stack::new(vec!["water".to_string()]);
+    let mut nums = Stack::new(vec![1,2,3]);
 }
