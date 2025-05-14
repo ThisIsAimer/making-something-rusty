@@ -1,20 +1,14 @@
-enum Cordinates{
-    Points(i32,i32)
-}
-impl Cordinates{
-    fn add_points(&self) -> i32 {
-    match self {
-        Cordinates::Points(a,b) => {
-            a+b
-        }
-    }
-}
+// Problem 1: Convert the code based on the combinators  
+// Solution: 
 
-}
+fn main() {
+    let numbers = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-fn main(){
-    let points = Cordinates::Points(5, 5);
+    let result: i32 = numbers
+        .iter()
+        .filter(|&&num| num % 2 != 0)
+        .map(|&num| num * num)
+        .sum();
 
-    print!("{}",points.add_points())
-
+    println!("Result without combinators: {}", result);
 }
